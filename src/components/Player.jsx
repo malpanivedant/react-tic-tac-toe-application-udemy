@@ -4,6 +4,7 @@ export default function Player({
   playerName,
   playerSymbol,
   isActive,
+  onChangeName,
   //   buttonTitle = "Edit",
 }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -13,13 +14,13 @@ export default function Player({
     setName(event.target.value);
   }
 
-  let buttonTitle = "Edit";
-
   function buttonClickHandler() {
     console.log("button clicked");
 
     setIsEditing((editing) => !editing);
-    console.log(buttonTitle);
+    if (isEditing) {
+      onChangeName({ symbol: playerSymbol, newName: name });
+    }
   }
 
   return (
